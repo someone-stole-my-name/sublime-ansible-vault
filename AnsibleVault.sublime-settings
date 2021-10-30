@@ -1,0 +1,24 @@
+{
+    /*
+     * Absolute path to your ansible.cfg file.
+     * e.x.: "/Users/bob/ansible.cfg"
+     *
+     * This can also be specified on a project by project basis.
+     * 
+     * It is used to load the vault password or vault ids.
+     * If empty, this file will be searched in the default paths.
+     *
+     * See:
+     * https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-identity-list
+     * https://docs.ansible.com/ansible/latest/reference_appendices/config.html#default-vault-password-file
+     */
+    "ansible_cfg": "",
+
+    /*
+     * Path to your site-packages directoties where Ansible is installed.
+     * e.x.: "/usr/lib/python3.9/site-packages"
+     *
+     * TODO: Bundle Ansible itself
+     */
+    "site_packages_directory": ""
+}

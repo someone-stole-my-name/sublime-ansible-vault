@@ -1,0 +1,33 @@
+name: ci
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ansible: ["4.7.0", "4.0.0", "3.3.0", "2.10.5", "2.5.10"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: pytest
+        env:
+          ANSIBLE_VERSION: ${{ matrix.ansible }}
+        run: |
+          cd $GITHUB_WORKSPACE && \
+          make test-${ANSIBLE_VERSION}
+  flake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: flake
+        run: make flake
+  pydocstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: pydocstyle
+        run: make pydocstyle

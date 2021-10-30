@@ -1,0 +1,46 @@
+[
+  {
+    "id": "tools",
+    "children": [
+      {
+        "id": "end"
+      },
+      {
+        "caption": "Ansible Vault",
+        "children": [
+          {
+            "caption": "Decrypt Vault",
+            "command": "ansible_vault_decrypt"
+          },
+          {
+            "caption": "Encrypt Vault",
+            "command": "ansible_vault_encrypt"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "preferences",
+    "children": [
+      {
+        "id": "package-settings",
+        "children": [
+          {
+            "caption": "Ansible Vault",
+            "children": [
+              {
+                "caption": "Settings",
+                "command": "edit_settings",
+                "args": {
+                  "base_file": "${packages}/Ansible Vault/AnsibleVault.sublime-settings",
+                  "default": "// Ansible Vault settings"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

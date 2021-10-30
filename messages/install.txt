@@ -1,0 +1,6 @@
+Ansible Vault
+=============
+
+Pre-requisites:
+- [Python](https://www.python.org)
+- [Ansible](https://docs.ansible.com)
