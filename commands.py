@@ -17,7 +17,7 @@ class AnsibleVaultBase(sublime_plugin.TextCommand):
                 self.text = text_imp
             else:
                 try:
-                    # workaround for pytest
+                    # local dev sugar
                     import lib.ansible as ansible_imp  # noqa: E402
                     import lib.text as text_imp  # noqa: E402
                     self.ansible = ansible_imp
@@ -52,24 +52,26 @@ class AnsibleVaultBase(sublime_plugin.TextCommand):
         return True
 
     def get_setting(self, key, default=None):
-        settings = sublime.load_settings('AnsibleVault.sublime-settings')
-        os_specific_settings = {}
+        settings = sublime.load_settings('VaultSavvy.sublime-settings')
 
+        os_specific_settings = {}
         os_name = sublime.platform()
         if os_name == 'osx':
-            os_specific_settings = sublime.load_settings('AnsibleVault (OSX).sublime-settings')
+            os_specific_settings = sublime.load_settings('VaultSavvy (OSX).sublime-settings')
         elif os_name == 'windows':
-            os_specific_settings = sublime.load_settings('AnsibleVault (Windows).sublime-settings')
+            os_specific_settings = sublime.load_settings('VaultSavvy (Windows).sublime-settings')
         else:
-            os_specific_settings = sublime.load_settings('AnsibleVault (Linux).sublime-settings')
+            os_specific_settings = sublime.load_settings('VaultSavvy (Linux).sublime-settings')
 
         project_settings = self.view.window().project_data() or {}
-        project_settings = project_settings.get('AnsibleVault', {})
+        project_settings = project_settings.get('VaultSavvy', {})
 
         if project_settings.get(key) is not None and project_settings.get(key) != "":
-            return str(project_settings.get(key))
+            return project_settings.get(key)
         elif os_specific_settings.get(key) is not None and os_specific_settings.get(key) != "":
-            return str(project_settings.get(key))
+            return project_settings.get(key)
+        elif settings.get(key) is not None and settings.get(key) != "":
+            return settings.get(key)
 
         return default
 

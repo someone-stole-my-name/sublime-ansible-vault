@@ -18,7 +18,6 @@
      * Path to your site-packages directoties where Ansible is installed.
      * e.x.: "/usr/lib/python3.9/site-packages"
      *
-     * TODO: Bundle Ansible itself
      */
     "site_packages_directory": ""
 }
