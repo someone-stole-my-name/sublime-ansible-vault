@@ -1,2 +1,4 @@
 __pycache__/
 .pytest_cache/
+sublime.py
+sublime_plugin.py
