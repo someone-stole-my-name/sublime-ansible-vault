@@ -178,13 +178,16 @@ class AnsibleVaultDecryptCommand(AnsibleVaultBase):
                 self.on_change,
                 self.on_cancel)
 
-    def decrypt_with_password(self):
+    def decrypt_with_password(self, password):
+        if password == -1:
+            pass
+
         if(self.is_selection):
             for sel in self.view.sel():
                 if sel.empty():
                     continue
                 content = self.text.unpad(self.ansible.vault_yaml_tag(self.view.substr(sel), remove=True))
-                decrypted_text = self.ansible.decrypt(content, self.vault_password)
+                decrypted_text = self.ansible.decrypt(content, password)
 
                 self.view.run_command('ansible_vault_output', {
                     'text': decrypted_text,
